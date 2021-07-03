@@ -5,7 +5,8 @@
   "main": "lib/export.js",
   "scripts": {
     "test-redis": "mocha tests/redis/index.js",
-    "test-client" : "mocha tests/request/index.js"
+    "test-client" : "mocha tests/request/index.js",
+    "test-path" : "mocha tests/path-handler/index.js"
   },
   "repository": {
     "type": "git",

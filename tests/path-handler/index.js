@@ -4,7 +4,9 @@ const assert = require('assert');
 
 describe('Path handler', () => {
     it('Should accept dynamic options', () => {
-        expect(0).to.equal(1);
+        const options = { type: 'Summoner', payload: { accountId: '123' } };
+        const pathHandler = new Path(options);
+        expect(pathHandler.payload.accountId).to.equal(options.payload.accountId);
     });
 
     it('Summoner: Should create a valid summonerByAccountId path', () => {
