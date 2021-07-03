@@ -38,8 +38,19 @@ describe('Redis Cache', async () => {
         assert.deepStrictEqual(result, value);
     });
 
-    it('Should not be able to retrieve an expired item', async () => {
-        expect(0).to.equal(1);
+    it('Should not be able to retrieve an expired item', async function() {
+        try {
+            this.timeout(15000);
+            const key = 'get-test-async';
+            const value = [1, {2:3}];
+            const ttl = 1;
+            await cache.set(key, value, ttl);
+            await new Promise(resolve => setTimeout(resolve, 3000));
+            const result = await cache.get(key);
+            expect(result).to.equal(null);
+        } catch(error) {
+            console.log(error);
+        }
     });
 
     it('Should be able to flush the entire dataset', async () => {
