@@ -1,0 +1,33 @@
+{
+  "name": "riot-tft",
+  "version": "0.0.1",
+  "description": "A tool for interfacing with Riots TFT API",
+  "main": "lib/export.js",
+  "scripts": {
+    "test-redis": "mocha tests/redis/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aria-lopez/riot-tft.git"
+  },
+  "keywords": [
+    "TFT",
+    "RIOT",
+    "API"
+  ],
+  "author": "aria-lopez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aria-lopez/riot-tft/issues"
+  },
+  "homepage": "https://github.com/aria-lopez/riot-tft#readme",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
+    "redis": "^3.1.2"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^9.0.1"
+  }
+}
