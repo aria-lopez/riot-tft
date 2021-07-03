@@ -54,6 +54,11 @@ describe('Redis Cache', async () => {
     });
 
     it('Should be able to flush the entire dataset', async () => {
-        expect(0).to.equal(1);
+        const value = [1, {2:3}, 4, true, false, "String"];
+        const key = 'test-flush';
+        await cache.set(key, value);
+        await cache.flush();
+        const result = await cache.get(key);
+        expect(result).to.equal(null);
     });
 });
