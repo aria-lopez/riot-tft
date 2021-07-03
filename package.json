@@ -4,7 +4,8 @@
   "description": "A tool for interfacing with Riots TFT API",
   "main": "lib/export.js",
   "scripts": {
-    "test-redis": "mocha tests/redis/index.js"
+    "test-redis": "mocha tests/redis/index.js",
+    "test-client" : "mocha tests/request/index.js"
   },
   "repository": {
     "type": "git",
