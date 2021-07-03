@@ -12,11 +12,15 @@ describe('Redis Cache', async () => {
             keyPrefix: 'custom-',
         }
         const customCache = new Redis(customOptions);
-        expect(customCache.key).to.equal(customOptions.keyPrefix);
+        expect(customCache.keyPrefix).to.equal(customOptions.keyPrefix);
     });
 
     it('Should be able to store data with an expiry time', async () => {
-        expect(0).to.equal(1);
+        const ttl = 1000;
+        const value = [1, {2:3}, 4, true, false, "String"];
+        const key = 'test';
+        const result = await cache.set(key, value, ttl);
+        expect(result).to.equal('OK');
     });
 
     it('Should be able to store data without an expiry time', async () => {
