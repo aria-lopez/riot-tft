@@ -24,7 +24,10 @@ describe('Redis Cache', async () => {
     });
 
     it('Should be able to store data without an expiry time', async () => {
-        expect(0).to.equal(1);
+        const value = [1, {2:3}, 4, true, false, "String"];
+        const key = 'test';
+        const result = await cache.set(key, value);
+        expect(result).to.equal('OK');
     });
 
     it('Should be able to retrieve data', async () => {
