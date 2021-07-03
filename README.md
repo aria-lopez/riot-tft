@@ -3,7 +3,7 @@ A tool for interfacing with Riots TFT API for javascript.
 
 # Status: In Dev - Not functional
 
-## prerequisites
+## Prerequisites
 ### A Riot API Key
 You need a riot api key to work with this tool, if you dont have one already you can obtain one here: `https://developer.riotgames.com/`
 
