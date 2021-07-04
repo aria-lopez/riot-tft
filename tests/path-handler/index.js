@@ -4,7 +4,7 @@ const assert = require('assert');
 const API_KEY = require('../../config.js');
 
 describe('Path handler', () => {
-        const options = { apiKey: API_KEY, region: 'NA', payload: { accountId: 'HZRCRfoL7vf8PmW9DFGeQnZx05AFW6dNgxP1t-N3Xw' } };
+        const options = { apiKey: API_KEY, region: 'NA', payload: { accountId: 'HZRCRfoL7vf8PmW9DFGeQnZx05AFW6dNgxP1t-N3Xw', summonerName: 'scarra' } };
         const pathHandler = new Path(options);
     it('Should accept dynamic options', () => {
         expect(pathHandler.payload.accountId).to.equal(options.payload.accountId);
@@ -21,7 +21,9 @@ describe('Path handler', () => {
     });
 
     it('Summoner: Should create a valid summonerBySummonerName path', () => {
-        expect(0).to.equal(1);
+        const expected = `https://na1.api.riotgames.com/tft/summoner/v1/summoners/by-name/scarra?api_key=${API_KEY}`;
+        const actual = pathHandler.summonerBySummonerName();
+        expect(actual).to.equal(expected);
     });
 
     it('Summoner: Should create a valid summonerByPuuid path', () => {
