@@ -9,6 +9,7 @@ describe('Path handler', () => {
             summonerName: 'scarra',
             puuid: 'vy9iRyl4SENb_sop5qRwuCmHqcV_YU1OKss9E8sbnLzNjA956jwHHfMvnBCx9DdCsSD6IK-gIrAj9g',
             summonerId: 'IFg_bFm3i52CJVxBvKBuqQmmZ_SqEq52nnInd-PAtfw',
+            matchId: 'NA1_3965501154',
         } };
         const pathHandler = new Path(options);
     it('Should accept dynamic options', () => {
@@ -50,7 +51,9 @@ describe('Path handler', () => {
     });
 
     it('Match: Should create a valid matchByMatchId path', () => {
-        expect(0).to.equal(1);
+        const expected = `https://americas.api.riotgames.com/tft/match/v1/matches/NA1_3965501154?api_key=${API_KEY}`;
+        const actual = pathHandler.matchByMatchId();
+        expect(actual).to.equal(expected);
     });
 
     it('League: Should create a valid leagueInfoChallengers path', () => {
