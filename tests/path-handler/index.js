@@ -57,7 +57,9 @@ describe('Path handler', () => {
     });
 
     it('League: Should create a valid leagueInfoChallengers path', () => {
-        expect(0).to.equal(1);
+        const expected = `https://na1.api.riotgames.com/tft/league/v1/challenger?api_key=${API_KEY}`;
+        const actual = pathHandler.leagueInfoChallengers();
+        expect(actual).to.equal(expected);
     });
 
     it('League: Should create a valid leagueInfoMasters path', () => {
