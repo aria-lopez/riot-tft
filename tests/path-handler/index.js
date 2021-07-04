@@ -1,9 +1,10 @@
 const Path = require('../../lib/path-handler');
 const { expect } = require('chai');
 const assert = require('assert');
+const API_KEY = require('../../config.js');
 
 describe('Path handler', () => {
-        const options = { apiKey: 1, region: 'NA', payload: { accountId: 1} };
+        const options = { apiKey: API_KEY, region: 'NA', payload: { accountId: 'HZRCRfoL7vf8PmW9DFGeQnZx05AFW6dNgxP1t-N3Xw' } };
         const pathHandler = new Path(options);
     it('Should accept dynamic options', () => {
         expect(pathHandler.payload.accountId).to.equal(options.payload.accountId);
@@ -14,7 +15,9 @@ describe('Path handler', () => {
     })
 
     it('Summoner: Should create a valid summonerByAccountId path', () => {
-        expect(0).to.equal(1);
+        const expected = `https://na1.api.riotgames.com/tft/summoner/v1/summoners/by-account/HZRCRfoL7vf8PmW9DFGeQnZx05AFW6dNgxP1t-N3Xw?api_key=${API_KEY}`;
+        const actual = pathHandler.summonerByAccountId();
+        expect(actual).to.equal(expected);
     });
 
     it('Summoner: Should create a valid summonerBySummonerName path', () => {
