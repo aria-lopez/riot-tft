@@ -8,6 +8,7 @@ describe('Path handler', () => {
             accountId: 'HZRCRfoL7vf8PmW9DFGeQnZx05AFW6dNgxP1t-N3Xw', 
             summonerName: 'scarra',
             puuid: 'vy9iRyl4SENb_sop5qRwuCmHqcV_YU1OKss9E8sbnLzNjA956jwHHfMvnBCx9DdCsSD6IK-gIrAj9g',
+            summonerId: 'IFg_bFm3i52CJVxBvKBuqQmmZ_SqEq52nnInd-PAtfw',
         } };
         const pathHandler = new Path(options);
     it('Should accept dynamic options', () => {
@@ -37,7 +38,9 @@ describe('Path handler', () => {
     });
 
     it('Summoner: Should create a valid summonerBySummonerId path', () => {
-        expect(0).to.equal(1);
+        const expected = `https://na1.api.riotgames.com/tft/summoner/v1/summoners/IFg_bFm3i52CJVxBvKBuqQmmZ_SqEq52nnInd-PAtfw?api_key=${API_KEY}`;
+        const actual = pathHandler.summonerBySummonerId();
+        expect(actual).to.equal(expected);
     });
 
     it('Match: Should create a valid matchsByPuuid path', () => {
