@@ -69,7 +69,9 @@ describe('Path handler', () => {
     });
 
     it('League: Should create a valid leagueInfoGrandmasters path', () => {
-        expect(0).to.equal(1);
+        const expected = `https://na1.api.riotgames.com/tft/league/v1/grandmaster?api_key=${API_KEY}`;
+        const actual = pathHandler.leagueInfoGrandmasters();
+        expect(actual).to.equal(expected);
     });
 
     it('League: Should create a valid leagueInfoBySummonerId path', () => {
