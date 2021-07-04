@@ -13,6 +13,7 @@ describe('Path handler', () => {
             tier: 'DIAMOND',
             division: 'I',
             leagueId: '348e058b-e2f6-3f48-a6be-b4d8e8481ab5',
+            queueId: 'RANKED_TFT_TURBO',
         } };
         const pathHandler = new Path(options);
     it('Should accept dynamic options', () => {
@@ -96,6 +97,8 @@ describe('Path handler', () => {
     });
 
     it('League: Should create a valid leagueInfoByQueueId', () => {
-        expect(0).to.equal(1);
+        const expected = `https://na1.api.riotgames.com/tft/league/v1/rated-ladders/RANKED_TFT_TURBO/top?api_key=${API_KEY}`;
+        const actual = pathHandler.leagueInfoByQueueId();
+        expect(actual).to.equal(expected);
     });
 });
