@@ -12,6 +12,7 @@ describe('Path handler', () => {
             matchId: 'NA1_3965501154',
             tier: 'DIAMOND',
             division: 'I',
+            leagueId: '348e058b-e2f6-3f48-a6be-b4d8e8481ab5',
         } };
         const pathHandler = new Path(options);
     it('Should accept dynamic options', () => {
@@ -89,7 +90,9 @@ describe('Path handler', () => {
     });
 
     it('League: Should create a valid leagueInfoByLeagueId path', () => {
-        expect(0).to.equal(1);
+        const expected = `https://na1.api.riotgames.com/tft/league/v1/leagues/348e058b-e2f6-3f48-a6be-b4d8e8481ab5?api_key=${API_KEY}`;
+        const actual = pathHandler.leagueInfoByLeagueId();
+        expect(actual).to.equal(expected);
     });
 
     it('League: Should create a valid leagueInfoByQueueId', () => {
