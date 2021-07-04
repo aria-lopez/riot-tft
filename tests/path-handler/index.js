@@ -43,8 +43,10 @@ describe('Path handler', () => {
         expect(actual).to.equal(expected);
     });
 
-    it('Match: Should create a valid matchsByPuuid path', () => {
-        expect(0).to.equal(1);
+    it('Match: Should create a valid matchIdsByPuuid path', () => {
+        const expected = `https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/vy9iRyl4SENb_sop5qRwuCmHqcV_YU1OKss9E8sbnLzNjA956jwHHfMvnBCx9DdCsSD6IK-gIrAj9g/ids?count=20&api_key=${API_KEY}`;
+        const actual = pathHandler.matchIdsByPuuid();
+        expect(actual).to.equal(expected);
     });
 
     it('Match: Should create a valid matchByMatchId path', () => {
