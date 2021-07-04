@@ -3,11 +3,15 @@ const { expect } = require('chai');
 const assert = require('assert');
 
 describe('Path handler', () => {
-    it('Should accept dynamic options', () => {
-        const options = { type: 'Summoner', payload: { accountId: '123' } };
+        const options = { apiKey: 1, region: 'NA', payload: { accountId: 1} };
         const pathHandler = new Path(options);
+    it('Should accept dynamic options', () => {
         expect(pathHandler.payload.accountId).to.equal(options.payload.accountId);
     });
+
+    it('Should be able to generate a valid prefix by region', () => {
+        expect(pathHandler.generatePrefix('summoner')).to.equal('https://na1.api.riotgames.com/tft/summoner/v1/summoners/');
+    })
 
     it('Summoner: Should create a valid summonerByAccountId path', () => {
         expect(0).to.equal(1);
