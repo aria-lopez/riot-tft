@@ -10,6 +10,8 @@ describe('Path handler', () => {
             puuid: 'vy9iRyl4SENb_sop5qRwuCmHqcV_YU1OKss9E8sbnLzNjA956jwHHfMvnBCx9DdCsSD6IK-gIrAj9g',
             summonerId: 'IFg_bFm3i52CJVxBvKBuqQmmZ_SqEq52nnInd-PAtfw',
             matchId: 'NA1_3965501154',
+            tier: 'DIAMOND',
+            division: 'I',
         } };
         const pathHandler = new Path(options);
     it('Should accept dynamic options', () => {
@@ -81,7 +83,9 @@ describe('Path handler', () => {
     });
 
     it('League: Should create a valid leagueInfoByTierAndDivision path', () => {
-        expect(0).to.equal(1);
+        const expected = `https://na1.api.riotgames.com/tft/league/v1/entries/DIAMOND/I?page=1&api_key=${API_KEY}`;
+        const actual = pathHandler.leagueInfoByTierAndDivision();
+        expect(actual).to.equal(expected);
     });
 
     it('League: Should create a valid leagueInfoByLeagueId path', () => {
