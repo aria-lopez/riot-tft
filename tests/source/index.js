@@ -9,6 +9,8 @@ describe('RiotTFT query tool', () => {
     const payload = {
         summonerName: 'scarra',
         accountId: 'HZRCRfoL7vf8PmW9DFGeQnZx05AFW6dNgxP1t-N3Xw',
+        puuid: 'vy9iRyl4SENb_sop5qRwuCmHqcV_YU1OKss9E8sbnLzNjA956jwHHfMvnBCx9DdCsSD6IK-gIrAj9g',
+
     };
     const useRedis = true;
     const redisConfig = { options: false, ttl: 10 };
@@ -26,6 +28,12 @@ describe('RiotTFT query tool', () => {
     it('Summoner: Should be able to query summonerBySummonerName', async () => {
         const { data } = await axios.get(`https://na1.api.riotgames.com/tft/summoner/v1/summoners/by-name/scarra?api_key=${API_KEY}`);
         const actual = await tft.getSummonerBySummonerName();
+        assert.deepStrictEqual(actual, data);
+    });
+
+    it('Summoner: Should be able to quyery summonerByPuuid', async () => {
+        const { data } = await axios.get(`https://na1.api.riotgames.com/tft/summoner/v1/summoners/by-puuid/vy9iRyl4SENb_sop5qRwuCmHqcV_YU1OKss9E8sbnLzNjA956jwHHfMvnBCx9DdCsSD6IK-gIrAj9g?api_key=${API_KEY}`);
+        const actual = await tft.getSummonerByPuuid();
         assert.deepStrictEqual(actual, data);
     });
 });
