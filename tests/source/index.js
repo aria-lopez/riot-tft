@@ -22,4 +22,10 @@ describe('RiotTFT query tool', () => {
         const actual = await tft.getSummonerByAccountId();
         assert.deepStrictEqual(actual, data);
     });
+
+    it('Summoner: Should be able to query summonerBySummonerName', async () => {
+        const { data } = await axios.get(`https://na1.api.riotgames.com/tft/summoner/v1/summoners/by-name/scarra?api_key=${API_KEY}`);
+        const actual = await tft.getSummonerBySummonerName();
+        assert.deepStrictEqual(actual, data);
+    });
 });
