@@ -55,4 +55,40 @@ describe('RiotTFT query tool', () => {
         const actual = await tft.getMatchByMatchId();
         assert.deepStrictEqual(actual, data);
     });
+
+    /* The following tests are not as accurate as I would like. (The League Routes)
+     * The Riot API for League information is ever-changing as it is highly volatile.
+     * This being said these test simply make sure the data is the correct shape, however the contents may be different.
+     */
+
+    const shallowCompare = (actual) => {
+        const expectedShape = { 
+            entries: [ { 
+                freshBlood: false, 
+                hotStreak: false, 
+                inactive: false,
+                leaguePoints: 1,
+                losses: 1,
+                rank: 'String',
+                summonerId: 'String',
+                summonerName: 'String',
+                veteran: false,
+                wins: 1,
+            } ], 
+        };
+        if (!actual?.entries[0]) { return false };
+        for (key in actual.entries[0]) {
+            if (typeof actual.entries[0][key] !== typeof expectedShape.entries[0][key]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    it('League: Should be able to query leagueInfoChallengers', async () => {
+        console.time('Start Of Query');
+        const actual = await tft.getLeagueInfoChallengers();
+        console.timeEnd('Start Of Query');
+        expect(shallowCompare(actual)).to.equal(true);
+    });
 });
