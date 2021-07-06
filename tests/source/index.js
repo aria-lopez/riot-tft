@@ -94,4 +94,9 @@ describe('RiotTFT query tool', () => {
         const actual = await tft.getLeagueInfoMasters();
         expect(shallowCompare(actual)).to.equal(true);
     });
+
+    it('League Should be able to query leagueInfoGrandmasters', async () => {
+        const actual = await tft.getLeagueInfoGrandmasters();
+        expect(shallowCompare(actual)).to.equal(true);
+    });
 });
