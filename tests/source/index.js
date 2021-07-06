@@ -14,6 +14,7 @@ describe('RiotTFT query tool', () => {
         matchId: 'NA1_3965501154',
         tier: 'DIAMOND',
         division: 'I',
+        leagueId: 'e1fe397d-2a53-4509-a079-e5d8066f7ddb',
     };
     const useRedis = true;
     const redisConfig = { options: false, ttl: 10 };
@@ -78,9 +79,44 @@ describe('RiotTFT query tool', () => {
                 wins: 1,
             } ], 
         };
-        if (!actual?.entries[0]) { return false };
+        if (!actual?.entries[0]) return false;
         for (key in actual.entries[0]) {
             if (typeof actual.entries[0][key] !== typeof expectedShape.entries[0][key]) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    const shallowCompareForLeagueId = (actual) => {
+        const expectedShape = {
+            tier: 'String',
+            leagueId: 'String',
+            queue: 'String',
+            name: 'String',
+            entries: [ {
+                    summonerId: 'String',
+                    summonerName: 'String',
+                    leaguePoints: 1,
+                    rank: 'String',
+                    wins: 1,
+                    losses: 1,
+                    veteran: false,
+                    inactive: false,
+                    freshBlood: false,
+                    hotStreak: false,
+                } ],
+        };
+        for (key in actual) {
+            if (key === 'entries') {
+                for (subKey in actual[key]) {
+                    if (typeof actual[key][0][subKey] !== typeof expectedShape[key][0][subKey]) {
+                        return false;
+                    }
+                }
+            }
+
+            if (typeof actual[key] !== typeof expectedShape[key]) {
                 return false;
             }
         }
@@ -113,4 +149,9 @@ describe('RiotTFT query tool', () => {
         const actual = await tft.getLeagueInfoByTierAndDivision();
         assert.deepStrictEqual(actual, data);
     });
+
+    it('League: Should be able to query leagueInfoByLeagueId', async () => {
+        const actual = await tft.getLeagueInfoByLeagueId();
+        expect(shallowCompareForLeagueId(actual)).to.equal(true);
+    })
 });
