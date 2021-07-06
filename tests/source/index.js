@@ -39,7 +39,7 @@ describe('RiotTFT query tool', () => {
     });
 
     it('Summoner: Should be able to query summonerBySummonerId', async () => {
-        const { data } = await axios.get(`https://na1.api.riotgames.com/tft/summoner/v1/summoners/by-name/scarra?api_key=${API_KEY}`);
+        const { data } = await axios.get(`https://na1.api.riotgames.com/tft/summoner/v1/summoners/IFg_bFm3i52CJVxBvKBuqQmmZ_SqEq52nnInd-PAtfw?api_key=${API_KEY}`);
         const actual = await tft.getSummonerBySummonerId();
         assert.deepStrictEqual(actual, data);
     });
@@ -98,5 +98,11 @@ describe('RiotTFT query tool', () => {
     it('League Should be able to query leagueInfoGrandmasters', async () => {
         const actual = await tft.getLeagueInfoGrandmasters();
         expect(shallowCompare(actual)).to.equal(true);
+    });
+
+    it('League: Should be able to query leagueInfoBySummonerId', async () => {
+        const { data } = await axios.get(`https://na1.api.riotgames.com/tft/league/v1/entries/by-summoner/IFg_bFm3i52CJVxBvKBuqQmmZ_SqEq52nnInd-PAtfw?api_key=${API_KEY}`);
+        const actual = await tft.getLeagueInfoBySummonerId();
+        assert.deepStrictEqual(actual, data);
     });
 });
