@@ -12,6 +12,8 @@ describe('RiotTFT query tool', () => {
         puuid: 'vy9iRyl4SENb_sop5qRwuCmHqcV_YU1OKss9E8sbnLzNjA956jwHHfMvnBCx9DdCsSD6IK-gIrAj9g',
         summonerId: 'IFg_bFm3i52CJVxBvKBuqQmmZ_SqEq52nnInd-PAtfw',
         matchId: 'NA1_3965501154',
+        tier: 'DIAMOND',
+        division: 'I',
     };
     const useRedis = true;
     const redisConfig = { options: false, ttl: 10 };
@@ -103,6 +105,12 @@ describe('RiotTFT query tool', () => {
     it('League: Should be able to query leagueInfoBySummonerId', async () => {
         const { data } = await axios.get(`https://na1.api.riotgames.com/tft/league/v1/entries/by-summoner/IFg_bFm3i52CJVxBvKBuqQmmZ_SqEq52nnInd-PAtfw?api_key=${API_KEY}`);
         const actual = await tft.getLeagueInfoBySummonerId();
+        assert.deepStrictEqual(actual, data);
+    });
+
+    it('League: Should be able to query leagueInfoByTierAndDivision', async () => {
+        const { data } = await axios.get(`https://na1.api.riotgames.com/tft/league/v1/entries/DIAMOND/I?page=1&api_key=${API_KEY}`);
+        const actual = await tft.getLeagueInfoByTierAndDivision();
         assert.deepStrictEqual(actual, data);
     });
 });
