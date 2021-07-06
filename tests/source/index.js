@@ -86,9 +86,12 @@ describe('RiotTFT query tool', () => {
     }
 
     it('League: Should be able to query leagueInfoChallengers', async () => {
-        console.time('Start Of Query');
         const actual = await tft.getLeagueInfoChallengers();
-        console.timeEnd('Start Of Query');
+        expect(shallowCompare(actual)).to.equal(true);
+    });
+
+    it('League: Should be able to query leagueInfoMasters', async () => {
+        const actual = await tft.getLeagueInfoMasters();
         expect(shallowCompare(actual)).to.equal(true);
     });
 });
