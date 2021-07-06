@@ -15,6 +15,7 @@ describe('RiotTFT query tool', () => {
         tier: 'DIAMOND',
         division: 'I',
         leagueId: 'e1fe397d-2a53-4509-a079-e5d8066f7ddb',
+        queueId: 'RANKED_TFT_TURBO',
     };
     const useRedis = true;
     const redisConfig = { options: false, ttl: 10 };
@@ -153,5 +154,11 @@ describe('RiotTFT query tool', () => {
     it('League: Should be able to query leagueInfoByLeagueId', async () => {
         const actual = await tft.getLeagueInfoByLeagueId();
         expect(shallowCompareForLeagueId(actual)).to.equal(true);
-    })
+    });
+
+    it('League: Should be able to query leagueInfoByQueueId', async () => {
+        const { data } = await axios.get(`https://na1.api.riotgames.com/tft/league/v1/rated-ladders/RANKED_TFT_TURBO/top?api_key=${API_KEY}`);
+        const actual = await tft.getLeagueInfoByQueueId();
+        assert.deepStrictEqual(actual, data);
+    });
 });
