@@ -11,6 +11,7 @@ describe('RiotTFT query tool', () => {
         accountId: 'HZRCRfoL7vf8PmW9DFGeQnZx05AFW6dNgxP1t-N3Xw',
         puuid: 'vy9iRyl4SENb_sop5qRwuCmHqcV_YU1OKss9E8sbnLzNjA956jwHHfMvnBCx9DdCsSD6IK-gIrAj9g',
         summonerId: 'IFg_bFm3i52CJVxBvKBuqQmmZ_SqEq52nnInd-PAtfw',
+        matchId: 'NA1_3965501154',
     };
     const useRedis = true;
     const redisConfig = { options: false, ttl: 10 };
@@ -47,5 +48,11 @@ describe('RiotTFT query tool', () => {
         const { data } = await axios.get(`https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/vy9iRyl4SENb_sop5qRwuCmHqcV_YU1OKss9E8sbnLzNjA956jwHHfMvnBCx9DdCsSD6IK-gIrAj9g/ids?count=20&api_key=${API_KEY}`);
         const actual = await tft.getMatchIdsByPuuid();
         assert.deepStrictEqual(actual, data); 
-    })
+    });
+
+    it('Match: Should be able to query matchByMatchId', async () => {
+        const { data } = await axios.get(`https://americas.api.riotgames.com/tft/match/v1/matches/NA1_3965501154?api_key=${API_KEY}`);
+        const actual = await tft.getMatchByMatchId();
+        assert.deepStrictEqual(actual, data);
+    });
 });
