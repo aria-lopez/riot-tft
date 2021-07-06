@@ -42,4 +42,10 @@ describe('RiotTFT query tool', () => {
         const actual = await tft.getSummonerBySummonerId();
         assert.deepStrictEqual(actual, data);
     });
+
+    it('Match: Should be able to query matchIdsByPuuid', async () => {
+        const { data } = await axios.get(`https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/vy9iRyl4SENb_sop5qRwuCmHqcV_YU1OKss9E8sbnLzNjA956jwHHfMvnBCx9DdCsSD6IK-gIrAj9g/ids?count=20&api_key=${API_KEY}`);
+        const actual = await tft.getMatchIdsByPuuid();
+        assert.deepStrictEqual(actual, data); 
+    })
 });
